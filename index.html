@@ -791,6 +791,77 @@
     .tool-group+.tool-group{margin-top:16px}
     .tool-group small{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#6c7a82}
 
+
+    /* ---- Closing sections: build strip, process, beyond, contact, footer ---- */
+    .cl-wrap{width:min(1120px,calc(100% - 72px));margin:0 auto}
+    .cl-h{font:650 clamp(40px,5.4vw,68px)/.98 var(--sans);letter-spacing:-.045em;margin:0;color:#161817}
+    .cl-h span{color:var(--mark)}
+    .cl-sub{max-width:360px;margin:0;font:500 17px/1.55 var(--sans);color:#59636a}
+    .cl-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin:0 0 44px}
+    /* build strip */
+    .build{margin:20px auto 0;padding:clamp(28px,4vw,44px);border-radius:28px;background:#161817;color:#f4f6f7;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;position:relative;overflow:hidden}
+    .build:before{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:var(--mark);opacity:.22;filter:blur(10px)}
+    .build-k{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mark);filter:brightness(1.35)}
+    .build h2{font:650 clamp(30px,3.6vw,46px)/1.05 var(--sans);letter-spacing:-.04em;margin:14px 0 14px;color:#fff}
+    .build p{margin:0;font:400 16px/1.65 var(--sans);color:#b9c1c6;max-width:46ch}
+    .build-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;position:relative}
+    .build-list li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.04)}
+    .build-list strong{display:block;font:650 17px/1.25 var(--sans);color:#fff}
+    .build-list small{display:block;margin-top:4px;font:400 13px/1.4 var(--sans);color:#9aa4aa}
+    .live-dot{display:inline-flex;align-items:center;gap:7px;flex:none;padding:6px 10px;border-radius:999px;background:rgba(74,222,128,.12);color:#86efac;font:600 12px/1 var(--sans)}
+    .live-dot:before{content:"";width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:livePulse 2s infinite}
+    @keyframes livePulse{70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+    .build-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .build-tools span{padding:7px 11px;border-radius:8px;border:1px solid rgba(255,255,255,.14);font:500 13px/1 var(--sans);color:#dfe5e8}
+    /* process */
+    .process{padding:110px 0 20px}
+    .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:st;border-top:1px solid rgba(40,55,65,.22)}
+    .step{position:relative;padding:28px 26px 8px 0}
+    .step:not(:last-child){border-right:1px solid rgba(40,55,65,.12);margin-right:26px}
+    .step-n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--mark);color:#fff;font:650 14px/1 var(--sans);margin-bottom:22px}
+    .step h3{margin:0 0 10px;font:650 23px/1.15 var(--sans);letter-spacing:-.03em;color:#202425}
+    .step p{margin:0;font:400 15px/1.6 var(--sans);color:#59636a}
+    .step q{display:block;margin-top:16px;font:600 13px/1.45 var(--sans);color:var(--mark);quotes:none}
+    /* beyond */
+    .beyond{padding:110px 0 20px}
+    .beyond-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .b-card{padding:26px;border-radius:22px;background:rgba(255,255,255,.78);border:1px solid #e3e8eb;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s}
+    .b-card:hover{transform:translateY(-4px) rotate(-.4deg);border-color:var(--mark)}
+    .b-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:color-mix(in srgb,var(--mark) 12%,white);color:var(--mark);margin-bottom:18px}
+    .b-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .b-card h3{margin:0 0 8px;font:650 20px/1.2 var(--sans);letter-spacing:-.025em;color:#202425}
+    .b-card p{margin:0;font:400 15px/1.6 var(--sans);color:#59636a}
+    .langs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+    .langs span{padding:5px 9px;border-radius:7px;background:#f1f4f6;font:500 12px/1 var(--sans);color:#4b5a63}
+    .langs span.is-main{background:var(--mark);color:#fff}
+    /* contact */
+    .cl-wrap.contact{display:block;border-top:0;padding:120px 0 90px;text-align:center}
+    .open-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid #e3e8eb;font:600 13px/1 var(--sans);color:#3d4a52;margin-bottom:26px}
+    .open-pill:before{content:"";width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+    .cl-wrap.contact h2{font:650 clamp(48px,8vw,104px)/.95 var(--sans);letter-spacing:-.055em;margin:0 auto;max-width:none;color:#161817}
+    .contact h2 span{color:var(--mark)}
+    .contact p{max-width:560px;margin:24px auto 0;font:500 18px/1.6 var(--sans);color:#59636a}
+    .contact-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px}
+    .c-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:14px 22px;border-radius:999px;font:600 15px/1 var(--sans);border:1px solid #d5dde2;background:#fff;color:#161817;transition:transform .25s,background .25s,color .25s,border-color .25s}
+    .c-btn:hover{transform:translateY(-2px);border-color:var(--mark);color:var(--mark)}
+    .c-btn.primary{background:#161817;border-color:#161817;color:#fff}
+    .c-btn.primary:hover{background:var(--mark);border-color:var(--mark);color:#fff}
+    .c-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .c-mail{display:inline-block;margin-top:22px;font:500 15px/1 var(--sans);color:#6b757b;border-bottom:1px dashed #b7c1c7;padding-bottom:3px}
+    .c-mail:hover{color:var(--mark);border-color:var(--mark)}
+    /* footer */
+    .site-foot{border-top:1px solid rgba(40,55,65,.18);padding:26px 0 34px}
+    .site-foot .cl-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font:500 14px/1.4 var(--sans);color:#6b757b}
+    .site-foot strong{color:#202425;font-weight:650}
+    .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+    .foot-links a:hover{color:var(--mark)}
+    /* reveal */
+    .motion-ready .rv{opacity:0;transform:translateY(18px)}
+    .motion-ready .rv.is-visible{opacity:1;transform:none;transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+    @media(max-width:950px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.step:nth-child(2){border-right:0;margin-right:0}.step{padding-bottom:26px}.step:nth-child(n+3){border-top:1px solid rgba(40,55,65,.12)}}
+    @media(max-width:850px){.cl-wrap{width:calc(100% - 52px)}.cl-head{flex-direction:column;align-items:start;gap:14px;margin-bottom:30px}.build{grid-template-columns:1fr}.beyond-grid{grid-template-columns:1fr 1fr}.process,.beyond{padding-top:84px}.cl-wrap.contact{padding:96px 0 72px}}
+    @media(max-width:600px){.cl-wrap{width:calc(100% - 36px)}.cl-h{font-size:40px}.cl-sub{font-size:15px}.build{border-radius:22px;padding:24px 20px}.steps{grid-template-columns:1fr}.step,.step:not(:last-child){border-right:0;margin-right:0;padding:24px 0}.step+.step{border-top:1px solid rgba(40,55,65,.12)}.beyond-grid{grid-template-columns:1fr}.cl-wrap.contact h2{font-size:52px}.contact p{font-size:16px}.c-btn{width:100%;justify-content:center}.site-foot .cl-wrap{flex-direction:column;align-items:start}}
+    @media(prefers-reduced-motion:reduce){.motion-ready .rv{opacity:1;transform:none;transition:none}.live-dot:before{animation:none}.b-card:hover{transform:none}}
   </style>
 </head>
 <body>
@@ -846,6 +917,7 @@
         <nav class="canvas-toolbar" aria-label="Portfolio links">
           <a class="canvas-tool tool-selected" href="#top" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z"/></svg></a>
           <a class="canvas-tool" href="#skills" aria-label="What I bring" title="What I bring"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20c.6-3.2 3-5 7-5s6.4 1.8 7 5"/></svg></a>
+          <a class="canvas-tool" href="#contact" aria-label="Contact" title="Contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg></a>
           <span class="toolbar-divider" aria-hidden="true"></span>
           <a class="canvas-tool" href="assets/Haddeer-Shukr-CV.pdf" download="Haddeer-Shukr-CV.pdf" aria-label="Download CV" title="Download CV"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg></a>
           <a class="canvas-tool tool-text" href="https://www.linkedin.com/in/haddeer-hassanin-638685194/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">in</a>
@@ -915,7 +987,54 @@
       </dialog>
     </section>
 
+
+    <section class="cl-wrap build rv" aria-labelledby="build-title">
+      <div>
+        <span class="build-k">Design + build</span>
+        <h2 id="build-title">I don&rsquo;t stop at the mockup.</h2>
+        <p>Two of the projects above are designed and built by me, and both are live today. Designing the flow and shipping the code myself means I understand what it takes to turn a screen into something people actually use.</p>
+        <div class="build-tools"><span>Figma</span><span>Claude Code</span><span>Codex</span><span>Supabase</span><span>GitHub Pages</span></div>
+      </div>
+      <ul class="build-list">
+        <li><div><strong>MS Group CRM</strong><small>Internal platform used daily by the sales team</small></div><span class="live-dot">Live</span></li>
+        <li><div><strong>MS El Brancy Group website</strong><small>B2B export website · msgroup-egy.com</small></div><span class="live-dot">Live</span></li>
+      </ul>
+    </section>
+
+    <section class="cl-wrap process" id="process" aria-labelledby="process-title">
+      <header class="cl-head rv"><h2 class="cl-h" id="process-title">How I <span>Work</span></h2><p class="cl-sub">No magic, just a habit of asking why before deciding how.</p></header>
+      <ol class="steps">
+        <li class="step rv"><span class="step-n">01</span><h3>Understand</h3><p>Who uses this, what are they trying to get done, and where do they get stuck today?</p><q>&ldquo;Why are we doing it this way?&rdquo;</q></li>
+        <li class="step rv"><span class="step-n">02</span><h3>Simplify</h3><p>Strip the problem down to what matters, then map the flow and the information before touching visuals.</p><q>Less to think about, not less to do.</q></li>
+        <li class="step rv"><span class="step-n">03</span><h3>Design</h3><p>Wireframes first, then high-fidelity screens and a consistent system so every page feels like the same product.</p><q>Every decision has a reason.</q></li>
+        <li class="step rv"><span class="step-n">04</span><h3>Build &amp; refine</h3><p>Prototype or build it, put it in front of real people, and keep iterating on what they actually do.</p><q>Shipped beats perfect.</q></li>
+      </ol>
+    </section>
+
+    <section class="cl-wrap beyond" id="beyond" aria-labelledby="beyond-title">
+      <header class="cl-head rv"><h2 class="cl-h" id="beyond-title">Beyond <span>Design</span></h2><p class="cl-sub">The things that keep me curious, and quietly shape how I design.</p></header>
+      <div class="beyond-grid">
+        <article class="b-card rv"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><h3>Languages</h3><p>Learning languages is how I learn how other people think.</p><div class="langs"><span class="is-main">Arabic · native</span><span class="is-main">English · professional</span><span>German</span><span>Italian</span><span>Spanish</span><span>French</span></div></article>
+        <article class="b-card rv"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10l4-3Z"/><path d="M12 3v4M21 10l-5 0M3 10h5M7 20l2.5-5M17 20l-2.5-5"/></svg></span><h3>Football &amp; tactics</h3><p>I watch the system, not just the ball: how a team is structured, and why one small change shifts the whole game.</p></article>
+        <article class="b-card rv"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><h3>Content &amp; ideas</h3><p>Content creation, philosophy, psychology, art and poetry: different ways of telling a story clearly.</p></article>
+      </div>
+    </section>
+
+    <section class="cl-wrap contact" id="contact" aria-labelledby="contact-title">
+      <div class="rv">
+        <span class="open-pill">Open to Product Designer roles</span>
+        <h2 id="contact-title">Let&rsquo;s <span>talk.</span></h2>
+        <p>Remote, on-site or relocation. If you&rsquo;re building something that needs to be easier to understand, I&rsquo;d love to hear about it.</p>
+        <div class="contact-actions">
+          <a class="c-btn primary" href="mailto:haddeershukr@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>Email me</a>
+          <a class="c-btn" href="https://www.linkedin.com/in/haddeer-hassanin-638685194/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
+          <a class="c-btn" href="assets/Haddeer-Shukr-CV.pdf" download="Haddeer-Shukr-CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download CV</a>
+        </div>
+        <a class="c-mail" href="mailto:haddeershukr@gmail.com">haddeershukr@gmail.com</a>
+      </div>
+    </section>
   </main>
+  <footer class="site-foot"><div class="cl-wrap"><span><strong>Haddeer Shukr</strong> · Product Designer · Egypt</span><nav class="foot-links" aria-label="Footer"><a href="mailto:haddeershukr@gmail.com">Email</a><a href="https://www.linkedin.com/in/haddeer-hassanin-638685194/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="assets/Haddeer-Shukr-CV.pdf" download="Haddeer-Shukr-CV.pdf">CV</a><a href="#top">Back to top ↑</a></nav><span>© 2026</span></div></footer>
 
   <div class="designer-cursor" aria-hidden="true">
           <svg viewBox="0 0 28 36" focusable="false"><path d="M3 2.5c-.8-.6-1.9 0-1.7 1l4.6 28c.2 1.1 1.6 1.4 2.2.5l5.2-8.1 7.8 7.2c.8.7 2.1.4 2.4-.6l1.7-4.8c.2-.7 0-1.4-.6-1.8l-8.5-5 8.8-4.2c1-.5.9-2-.2-2.4L3 2.5Z" fill="var(--mark)" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
@@ -1208,6 +1327,11 @@
       });
     }
   
+
+    /* closing sections reveal */
+    (()=>{const els=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('is-visible'));return;}
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.12});
+      els.forEach(e=>{const sib=e.parentElement?[...e.parentElement.children].filter(c=>c.classList.contains('rv')):[];const i=sib.indexOf(e);if(i>0)e.style.transitionDelay=(i*70)+'ms';io.observe(e);});})();
 </script>
 </body>
 </html>
