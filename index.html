@@ -862,6 +862,18 @@
     @media(max-width:850px){.cl-wrap{width:calc(100% - 52px)}.cl-head{flex-direction:column;align-items:start;gap:14px;margin-bottom:30px}.build{grid-template-columns:1fr}.beyond-grid{grid-template-columns:1fr 1fr}.process,.beyond{padding-top:84px}.cl-wrap.contact{padding:96px 0 72px}}
     @media(max-width:600px){.cl-wrap{width:calc(100% - 36px)}.cl-h{font-size:40px}.cl-sub{font-size:15px}.build{border-radius:22px;padding:24px 20px}.steps{grid-template-columns:1fr}.step,.step:not(:last-child){border-right:0;margin-right:0;padding:24px 0}.step+.step{border-top:1px solid rgba(40,55,65,.12)}.beyond-grid{grid-template-columns:1fr}.cl-wrap.contact h2{font-size:52px}.contact p{font-size:16px}.c-btn{width:100%;justify-content:center}.site-foot .cl-wrap{flex-direction:column;align-items:start}}
     @media(prefers-reduced-motion:reduce){.motion-ready .rv{opacity:1;transform:none;transition:none}.live-dot:before{animation:none}.b-card:hover{transform:none}}
+    .folder-ntra2{--folder:#2d2e5f;--folder-paper:#ecedf6;grid-column:1/-1}
+    .folder-ntra2 .folder-tab{background:#2d2e5f!important;color:#eef0fa!important}
+    .folder-ntra2 .folder-preview{background:radial-gradient(120% 120% at 85% 10%,#3baa7e33,transparent 55%),linear-gradient(145deg,#ecedf6,#fff 90%)!important;position:relative}
+    .folder-ntra2 .device-msgroup{width:min(64%,760px)!important}
+    .ntra-chip{position:absolute;right:clamp(14px,5%,64px);bottom:18%;display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#3baa7e;color:#fff;font:600 13px/1 var(--sans);box-shadow:0 14px 34px -12px rgba(59,170,126,.7);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+    .ntra-chip i{width:8px;height:8px;border-radius:50%;background:#fff;animation:ntraRing 1.6s infinite}
+    .ntra-chip time{font:500 12px/1 ui-monospace,Menlo,monospace;padding-left:10px;border-left:1px solid rgba(255,255,255,.4)}
+    @keyframes ntraRing{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+    .folder-ntra2:hover .ntra-chip{transform:translateY(-6px)}
+    @media(min-width:761px){.folder-ntra2 .folder-preview{padding-top:70px!important;height:clamp(420px,40vw,560px)!important}}
+    @media(max-width:760px){.folder-ntra2 .device-msgroup{width:88%!important}.ntra-chip{bottom:8%;font-size:12px;padding:8px 12px}}
+    @media(prefers-reduced-motion:reduce){.ntra-chip i{animation:none}}
   </style>
 </head>
 <body>
@@ -969,6 +981,10 @@
           <a class="project-folder folder-msgroup folder-crm" href="crm/index.html" data-title="MS Group CRM" data-category="Internal product · Web app" data-story="One platform for an export deal, from first contact to payment." data-role="Product design &amp; build" data-focus="CRM and export workflows" data-image="assets/crm-case-study/card-desktop.webp" aria-label="Open MS Group CRM case study">
             <span class="folder-tab">MS GROUP CRM · INTERNAL PRODUCT</span>
             <span class="folder-body"><span class="folder-preview"><span class="device-frame device-desktop device-msgroup"><img src="assets/crm-case-study/card-desktop.webp" alt="" loading="lazy" /></span><span class="ms-phone"><img src="assets/crm-case-study/card-mobile.webp" alt="" loading="lazy" /></span></span><span class="folder-meta"><strong>MS Group CRM<span class="ms-live">Live</span></strong><small>CRM &amp; export management platform · Designed and built · 20 modules, 7 roles</small></span><span class="folder-open" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="project-folder folder-msgroup folder-ntra2" href="ntra/index.html" data-title="NTRA Call Center Portal" aria-label="Open NTRA Call Center Portal case study">
+            <span class="folder-tab">NTRA · CALL CENTER</span>
+            <span class="folder-body"><span class="folder-preview"><span class="device-frame device-desktop device-msgroup"><img src="ntra/img/dashboard-sm.webp" alt="" loading="lazy" /></span><span class="ntra-chip" aria-hidden="true"><i></i>On a call<time>00:02:30</time></span></span><span class="folder-meta"><strong>NTRA Call Center Portal</strong><small>Internal workspace for call center agents</small></span><span class="folder-open" aria-hidden="true">↗</span></span>
           </a>
         </div>
       </div>

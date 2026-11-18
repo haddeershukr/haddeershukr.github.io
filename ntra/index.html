@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NTRA Call Center Portal — Case Study</title>
+<meta name="description" content="UI/UX case study: NTRA Call Center Portal, an internal workspace for call center agents designed by Haddeer.">
+<script>try{history.scrollRestoration='manual'}catch(e){}(function(){var t=function(){if(location.hash)return;window.scrollTo(0,0)};t();addEventListener('DOMContentLoaded',t);addEventListener('load',t);addEventListener('pageshow',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2d2e5f;--navy-2:#1c1d3d;--navy-3:#121329;--green:#3baa7e;--green-soft:#d8f1e6;
+  --orange:#e2501f;--amber:#e09a12;--ok:#2fa36b;
+  --paper:#f6f6fb;--paper-2:#ecedf6;--ink:#17182b;--ink-2:#55576e;--ink-3:#8a8ca3;--line:#dcdde9;
+  --on-dark:#eef0fa;--on-dark-2:#a6a9c8;--line-dark:rgba(238,240,250,.14);
+  --f-serif:"Instrument Serif",Georgia,serif;--f-sans:"Hanken Grotesk",system-ui,-apple-system,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --wrap:1240px;--ease:cubic-bezier(.2,.8,.2,1);color-scheme:light
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px}
+.wrap{width:min(var(--wrap),calc(100% - 64px));margin:0 auto}
+.mono{font:500 11.5px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.label{display:flex;align-items:center;gap:14px;color:var(--ink-3);margin-bottom:26px}
+.label b{color:var(--green);font-weight:500}
+.label i{width:48px;height:1px;background:currentColor;opacity:.5}
+.d2{font:400 clamp(46px,6.4vw,92px)/.98 var(--f-serif);letter-spacing:-.02em;margin:0}
+.d2 em{font-style:italic;color:var(--green)}
+.lead{font:400 clamp(18px,1.55vw,21px)/1.6 var(--f-sans);color:var(--ink-2);margin:0}
+.pad{padding:clamp(90px,11vw,160px) 0}
+
+/* browser frame */
+.browser{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 90px -40px rgba(18,19,41,.45),0 0 0 1px rgba(18,19,41,.06)}
+.browser .bar{display:flex;align-items:center;gap:7px;height:34px;padding:0 14px;background:#f1f1f7;border-bottom:1px solid var(--line)}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#d3d4e0}
+.browser .bar span{margin:0 auto;padding:4px 12px;border-radius:7px;background:#fff;font:500 10.5px var(--f-mono);color:var(--ink-3);letter-spacing:.04em}
+.browser .vp{position:relative}
+
+/* HUD */
+.hud{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;display:flex;justify-content:space-between;pointer-events:none}
+.pill{pointer-events:auto;display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 16px;border-radius:999px;background:rgba(18,19,41,.86);backdrop-filter:blur(10px);color:var(--on-dark);border:1px solid var(--line-dark);font:500 11.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;transition:background .25s}
+.pill:hover{background:var(--navy)}
+.pill b{color:var(--green);font-weight:500}
+
+/* cover */
+.cover{background:radial-gradient(1200px 600px at 50% 0%,#2a2c62 0%,var(--navy-3) 70%);color:var(--on-dark);overflow:hidden;position:relative}
+.cover:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(238,240,250,.09) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(#000,transparent 75%);pointer-events:none}
+.cover-top{display:flex;justify-content:space-between;align-items:center;padding-top:30px;position:relative}
+.cover-brand{font:600 15px var(--f-sans);letter-spacing:.02em}
+.cover-brand span{color:var(--on-dark-2);font-weight:400}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line-dark);color:var(--on-dark-2)}
+.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.cover-mid{position:relative;text-align:center;padding-top:clamp(70px,9vw,120px);display:grid;justify-items:center;gap:26px}
+.cover-mid .mono{color:var(--green)}
+.cover h1{font:400 clamp(54px,9vw,148px)/.92 var(--f-serif);letter-spacing:-.025em;margin:0}
+.cover h1 em{font-style:italic;color:var(--green)}
+.cover .sub{max-width:640px;font-size:clamp(18px,1.6vw,22px);color:var(--on-dark-2);margin:0}
+.livechip{display:inline-flex;align-items:center;gap:12px;padding:10px 16px 10px 12px;border-radius:999px;background:var(--green);color:#fff;font:600 14px var(--f-sans);box-shadow:0 14px 40px -12px rgba(59,170,126,.7)}
+.livechip svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.livechip time{font:500 13px var(--f-mono);letter-spacing:.06em;padding-left:12px;border-left:1px solid rgba(255,255,255,.4);font-variant-numeric:tabular-nums}
+.livechip .ring{width:8px;height:8px;border-radius:50%;background:#fff;animation:ring 1.6s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 9px rgba(255,255,255,0)}}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:980px;margin:clamp(46px,5vw,70px) auto 0;border-top:1px solid var(--line-dark);position:relative}
+.meta div{padding:16px 10px 0;text-align:center;display:grid;gap:7px}
+.meta dt{color:var(--on-dark-2)}
+.meta dd{margin:0;font-size:15.5px}
+.cover-shot{position:relative;max-width:1120px;margin:clamp(50px,6vw,84px) auto 0;margin-bottom:calc(-1 * clamp(90px,14vw,230px))}
+.cover+section{position:relative;z-index:1}
+
+/* overview */
+.ov{padding-top:calc(clamp(90px,14vw,230px) + clamp(80px,9vw,130px))}
+.ov-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:start}
+.ov-grid .lead+.lead{margin-top:18px}
+.jobs{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:12px}
+.jobs li{display:flex;align-items:center;gap:14px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:14px;font-weight:600}
+.jobs li span{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--paper-2);color:var(--navy)}
+.jobs svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.goalline{margin-top:34px;padding:22px 24px;border-left:3px solid var(--green);background:linear-gradient(90deg,var(--green-soft),transparent);font:400 clamp(22px,2.2vw,28px)/1.35 var(--f-serif);color:var(--ink)}
+
+/* challenge */
+.ch{background:var(--navy-3);color:var(--on-dark);position:relative;overflow:hidden}
+.ch .label{color:var(--on-dark-2)}
+.ch .d2 em{color:var(--green)}
+.ch-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:end}
+.ch-head .lead{color:var(--on-dark-2)}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(46px,5vw,70px)}
+.score{padding:24px 26px;border:1px solid var(--line-dark);border-radius:18px;background:rgba(255,255,255,.03);display:grid;gap:10px}
+.score .mono{color:var(--on-dark-2)}
+.score strong{font:400 clamp(30px,3vw,42px)/1.05 var(--f-serif)}
+.score p{margin:0;color:var(--on-dark-2);font-size:15.5px}
+.toggle{display:inline-flex;margin:clamp(56px,6vw,86px) 0 22px;padding:4px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line-dark)}
+.toggle button{border:0;background:none;padding:10px 18px;border-radius:999px;color:var(--on-dark-2);font:500 11.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;transition:background .3s,color .3s}
+.toggle button[aria-pressed="true"]{background:var(--green);color:#fff}
+.stage{position:relative;height:clamp(380px,40vw,500px);border:1px solid var(--line-dark);border-radius:22px;background:rgba(255,255,255,.02);overflow:hidden}
+.stage .cap{position:absolute;left:24px;bottom:20px;right:24px;color:var(--on-dark-2);font-size:15px;transition:opacity .4s}
+.win{position:absolute;width:30%;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 26px 60px -24px rgba(0,0,0,.6);transition:all .9s var(--ease);overflow:hidden}
+.win .wt{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);font:600 12.5px var(--f-sans)}
+.win .wt i{width:8px;height:8px;border-radius:50%}
+.win .wb{padding:12px;display:grid;gap:7px}
+.win .ln{height:8px;border-radius:4px;background:var(--paper-2)}
+.win .ln.s{width:60%}.win .ln.m{width:80%}
+.w-call .wt i{background:var(--green)}.w-form .wt i{background:var(--navy)}.w-hist .wt i{background:var(--amber)}
+.w-call .callbar{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin:-12px -12px 4px;background:var(--green);color:#fff;font:600 12px var(--f-sans)}
+.w-call .callbar time{font:500 11px var(--f-mono)}
+.w-call .btns{display:flex;gap:6px}.w-call .btns span{flex:1;height:22px;border-radius:7px;background:var(--paper-2)}.w-call .btns span:first-child{background:var(--orange)}
+.w-form .fld{height:16px;border-radius:5px;border:1px solid var(--line)}
+.w-form .go{height:20px;border-radius:6px;background:var(--navy);margin-top:3px}
+.w-hist .tk{display:flex;align-items:center;gap:6px;padding:7px 8px;border:1px solid var(--line);border-radius:7px}
+.w-hist .tk b{width:6px;height:6px;border-radius:50%}.w-hist .tk .ln{flex:1;margin:0}
+/* before positions */
+.stage[data-mode="before"] .w-call{left:4%;top:9%;transform:rotate(-3deg)}
+.stage[data-mode="before"] .w-form{left:35%;top:22%;transform:rotate(2deg)}
+.stage[data-mode="before"] .w-hist{left:66%;top:6%;transform:rotate(-1.5deg)}
+.hop{position:absolute;inset:0;pointer-events:none;transition:opacity .5s}
+.hop path{fill:none;stroke:var(--orange);stroke-width:2;stroke-dasharray:6 7;animation:dash 1.2s linear infinite}
+.hop text{fill:var(--orange);font:500 11px var(--f-mono);letter-spacing:.1em}
+@keyframes dash{to{stroke-dashoffset:-26}}
+/* after: one workspace frame */
+.shell{position:absolute;left:4%;right:4%;top:8%;bottom:20%;border-radius:18px;border:1px dashed rgba(238,240,250,.3);opacity:0;transition:opacity .6s .3s}
+.shell span{position:absolute;left:16px;top:-11px;padding:3px 10px;border-radius:999px;background:var(--navy-3);color:var(--green)}
+.stage[data-mode="after"] .shell{opacity:1}
+.stage[data-mode="after"] .hop{opacity:0}
+.stage[data-mode="after"] .w-hist{left:6%;top:13%;width:56%;transform:none}
+.stage[data-mode="after"] .w-form{left:6%;top:47%;width:56%;transform:none}
+.stage[data-mode="after"] .w-call{left:65%;top:13%;width:29%;transform:none;box-shadow:0 0 0 2px var(--green),0 26px 60px -24px rgba(0,0,0,.6)}
+.stage[data-mode="after"] .w-form .wb{grid-template-columns:repeat(3,1fr)}
+.stage[data-mode="after"] .w-form .go{grid-column:1/-1}
+.stage[data-mode="after"] .w-form .ln{display:none}
+.stage .cap .b,.stage .cap .a{transition:opacity .4s}
+.stage[data-mode="before"] .cap .a,.stage[data-mode="after"] .cap .b{display:none}
+
+/* goals */
+.gl-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:end;margin-bottom:clamp(46px,5vw,70px)}
+.gl-head .d2 span{display:block}
+.gl-body{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr);gap:clamp(26px,3.5vw,54px);align-items:start}
+.goals{list-style:none;margin:0;padding:0;display:grid;gap:12px;position:sticky;top:30px}
+.goal{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:18px;padding:22px 22px 22px 24px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.goal .n{grid-row:span 2;font:400 34px/1 var(--f-serif);color:var(--ink-3);transition:color .3s}
+.goal h3{margin:0;font:700 19px/1.25 var(--f-sans);letter-spacing:-.01em}
+.goal p{margin:0;max-height:0;overflow:hidden;opacity:0;color:var(--ink-2);font-size:15.5px;transition:max-height .5s var(--ease),opacity .4s,margin .4s}
+.goal[aria-selected="true"]{border-color:var(--green);box-shadow:0 18px 40px -26px rgba(45,46,95,.5);transform:translateX(4px)}
+.goal[aria-selected="true"] .n{color:var(--green)}
+.goal[aria-selected="true"] p{max-height:140px;opacity:1;margin-top:6px}
+.goal:hover:not([aria-selected="true"]){border-color:#c3c5da}
+.proof .vp{overflow:hidden}
+.proof img{transition:opacity .35s}
+.proof img.swap{opacity:0}
+.hl{position:absolute;border-radius:14px;border:2.5px solid var(--green);box-shadow:0 0 0 9999px rgba(18,19,41,.38);transition:all .6s var(--ease);pointer-events:none}
+.hl.r b{left:auto;right:-2px}
+.hl b{position:absolute;left:-2px;top:-30px;padding:5px 10px;border-radius:8px;background:var(--green);color:#fff;font:500 10.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.proof figcaption{margin-top:14px;color:var(--ink-3);font-size:14px}
+
+/* workspace walkthrough */
+.ws{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ws-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.steps{display:flex;gap:6px;padding:5px;border-radius:999px;background:var(--paper-2)}
+.steps button{display:flex;align-items:center;gap:9px;border:0;background:none;padding:11px 18px;border-radius:999px;font:600 14.5px var(--f-sans);color:var(--ink-2);transition:background .3s,color .3s}
+.steps button i{font:500 10.5px var(--f-mono);font-style:normal;color:var(--ink-3)}
+.steps button[aria-selected="true"]{background:var(--navy);color:#fff}
+.steps button[aria-selected="true"] i{color:var(--green)}
+.ws-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,.75fr);gap:clamp(26px,3.5vw,50px);align-items:start}
+.ws-shot .vp{aspect-ratio:2200/1874;overflow:hidden;background:var(--paper)}
+.ws-shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .35s}
+.ws-shot img.swap{opacity:0}
+.ws-note{position:sticky;top:30px;display:grid;gap:16px}
+.ws-note .mono{color:var(--green)}
+.ws-note h3{margin:0;font:400 clamp(30px,3vw,42px)/1.05 var(--f-serif)}
+.ws-note p{margin:0;color:var(--ink-2)}
+.ws-note ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.ws-note li{display:flex;gap:10px;font-size:15.5px;color:var(--ink-2)}
+.ws-note li:before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--green)}
+.ws-nav{display:flex;gap:10px;margin-top:8px}
+.ws-nav button{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;transition:border-color .25s,background .25s}
+.ws-nav button:hover{border-color:var(--navy);background:var(--paper)}
+.ws-nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* status language */
+.sl-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(40px,6vw,96px);align-items:center}
+.chips{display:grid;gap:12px}
+.chiprow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.chiprow small{color:var(--ink-3);font-size:14px}
+.st{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--f-sans)}
+.st:before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.st.fail{color:var(--orange)}.st.prog{color:var(--amber)}.st.ok{color:var(--ok)}
+.prio{padding:6px 16px;border-radius:999px;background:var(--orange);color:#fff;font:600 14px var(--f-sans)}
+.prio.low{background:var(--paper-2);color:var(--ink-2)}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:30px}
+.sw{border-radius:14px;aspect-ratio:1/1.15;padding:12px;display:flex;flex-direction:column;justify-content:end;color:#fff;font:500 10.5px/1.4 var(--f-mono);letter-spacing:.06em}
+.sw.lt{color:var(--ink);border:1px solid var(--line)}
+
+/* close */
+.close{background:var(--navy-3);color:var(--on-dark);text-align:center}
+.close .d2{font-size:clamp(46px,7vw,110px)}
+.close .lead{color:var(--on-dark-2);max-width:560px;margin:24px auto 0}
+.close-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:40px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font:600 15px var(--f-sans);border:1px solid var(--line-dark);transition:background .25s,transform .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:var(--green);border-color:var(--green);color:#fff}
+.btn.pri:hover{background:#34986f}
+.btn:not(.pri):hover{background:rgba(255,255,255,.06)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .ov-grid,.ch-head,.gl-head,.gl-body,.ws-body,.sl-grid{grid-template-columns:1fr}
+  .goals{position:static}
+  .ws-note{position:static}
+  .goal p{max-height:none;opacity:1;margin-top:6px}
+}
+@media (max-width:700px){
+  .wrap{width:calc(100% - 36px)}
+  .meta{grid-template-columns:1fr 1fr;row-gap:18px}
+  .cover-top .tag{display:none}
+  .scores{grid-template-columns:1fr}
+  .stage{height:600px}
+  .stage[data-mode="before"] .w-call{left:4%;top:5%;width:46%}
+  .stage[data-mode="before"] .w-form{left:44%;top:25%;width:50%}
+  .stage[data-mode="before"] .w-hist{left:8%;top:44%;width:46%}
+  .stage[data-mode="after"] .w-call{left:6%;top:7%;width:88%}
+  .stage[data-mode="after"] .w-hist{left:6%;top:29%;width:88%}
+  .stage[data-mode="after"] .w-form{left:6%;top:56%;width:88%}
+  .shell{bottom:17%}
+  .stage[data-mode="after"] .w-form .wb{grid-template-columns:1fr 1fr}
+  .stage .cap{font-size:13.5px}
+  .hop{display:none}
+  .steps{width:100%;overflow-x:auto}
+  .steps button{flex:1;justify-content:center;padding:11px 12px;font-size:14px;white-space:nowrap}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .hl b{font-size:9px;top:-26px}
+  .btn{width:100%;justify-content:center}
+  .browser .bar span{display:none}
+}
+@media (min-width:1800px){:root{--wrap:1500px}body{font-size:19px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="hud" aria-label="Case study navigation">
+  <a class="pill" href="../index.html#work">← Portfolio</a>
+  <a class="pill" href="#top" id="hudSec" aria-label="Back to top"><b>01</b><span>Cover</span></a>
+</nav>
+
+<main id="top">
+  <section class="cover" data-sec="01" data-name="Cover">
+    <div class="wrap">
+      <div class="cover-top"><span class="cover-brand">Haddeer <span>/ Case study</span></span><span class="tag mono">UI/UX case study</span></div>
+      <div class="cover-mid">
+        <span class="mono">Internal workspace · Call center</span>
+        <h1>NTRA Call Center <em>Portal</em></h1>
+        <p class="sub">A workspace where the live call never leaves the screen, so agents can log, look up and resolve without losing the person on the line.</p>
+        <span class="livechip" aria-label="Example of the persistent call widget"><span class="ring" aria-hidden="true"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>On a call<time id="liveTimer">00:02:30</time></span>
+      </div>
+      <dl class="meta">
+        <div><dt class="mono">Client</dt><dd>NTRA</dd></div>
+        <div><dt class="mono">Product</dt><dd>Internal call center portal</dd></div>
+        <div><dt class="mono">Platform</dt><dd>Desktop web</dd></div>
+        <div><dt class="mono">Role</dt><dd>UI/UX design</dd></div>
+      </dl>
+      <div class="cover-shot">
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>NTRA · Call Center Portal</span></div><div class="vp"><img src="img/dashboard.webp" alt="NTRA Call Center Portal dashboard with reports filters, latest tickets, call statistics, today's schedule, call records and a live call widget" width="2200" height="1874" fetchpriority="high"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ov pad" data-sec="02" data-name="Overview" aria-labelledby="ov-t">
+    <div class="wrap ov-grid">
+      <div class="rv">
+        <div class="label mono"><b>02</b><i></i>Overview</div>
+        <h2 class="d2" id="ov-t">One desk for <em>every</em> part of a call.</h2>
+        <div class="goalline">Reduce visual complexity, while keeping everything an agent needs within reach.</div>
+      </div>
+      <div class="rv">
+        <p class="lead">The NTRA Call Center Portal is an internal workspace that supports call center agents in managing customer interactions and accessing the information they need during their daily operations.</p>
+        <p class="lead">The redesign focused on a more structured workspace, where agents can:</p>
+        <ul class="jobs">
+          <li><span><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>Handle live calls</li>
+          <li><span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Access customer information</li>
+          <li><span><svg viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/></svg></span>Open and manage requests</li>
+          <li><span><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>Move between tasks efficiently</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch pad" data-sec="03" data-name="Challenge" aria-labelledby="ch-t">
+    <div class="wrap">
+      <div class="ch-head rv">
+        <div><div class="label mono"><b>03</b><i></i>The challenge</div><h2 class="d2" id="ch-t">Judged on two things, <em>at once.</em></h2></div>
+        <p class="lead">In the existing workflow, those two goals lived on separate screens. Every hand-off between them cost time the agent didn&rsquo;t have, while someone was still on the line.</p>
+      </div>
+      <div class="scores rv">
+        <div class="score"><span class="mono">Scorecard 01</span><strong>Speed</strong><p>How quickly they resolve the caller&rsquo;s issue.</p></div>
+        <div class="score"><span class="mono">Scorecard 02</span><strong>Accuracy</strong><p>How accurately they log it.</p></div>
+      </div>
+      <div class="rv">
+        <div class="toggle" role="group" aria-label="Compare the workflow">
+          <button type="button" data-mode="before" aria-pressed="true">Before</button>
+          <button type="button" data-mode="after" aria-pressed="false">After</button>
+        </div>
+        <div class="stage" id="stage" data-mode="before">
+          <div class="shell"><span class="mono">One workspace</span></div>
+          <svg class="hop" viewBox="0 0 1000 480" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M300 150 C 340 110, 360 110, 380 170"/><path d="M640 200 C 680 150, 690 120, 700 110"/><path d="M200 250 C 380 420, 700 420, 820 230"/>
+            <text x="318" y="105">SWITCH</text><text x="650" y="105">SWITCH</text><text x="480" y="440">SWITCH</text>
+          </svg>
+          <div class="win w-call"><div class="wt"><i></i>Live call</div><div class="wb"><div class="callbar"><span>Caller</span><time>00:02:30</time></div><div class="btns"><span></span><span></span><span></span></div></div></div>
+          <div class="win w-form"><div class="wt"><i></i>Ticket form</div><div class="wb"><div class="fld"></div><div class="fld"></div><div class="fld"></div><div class="ln m"></div><div class="go"></div></div></div>
+          <div class="win w-hist"><div class="wt"><i></i>Customer history</div><div class="wb"><div class="tk"><b style="background:var(--orange)"></b><div class="ln"></div></div><div class="tk"><b style="background:var(--amber)"></b><div class="ln"></div></div><div class="tk"><b style="background:var(--ok)"></b><div class="ln"></div></div></div></div>
+          <p class="cap"><span class="b">Before: the live call, the ticket form and the customer&rsquo;s history lived in three different places.</span><span class="a">After: one workspace. The call stays pinned while the agent logs and looks up on the same page.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gl pad" data-sec="04" data-name="Goals" aria-labelledby="gl-t">
+    <div class="wrap">
+      <div class="gl-head rv">
+        <div><div class="label mono"><b>04</b><i></i>Goals</div><h2 class="d2" id="gl-t"><span>Never lose sight</span><span>of the <em>call.</em></span></h2></div>
+        <p class="lead">One workspace where an agent can monitor an active call, open or update a ticket, and review a customer&rsquo;s record. Pick a goal to see where it lives on the screen.</p>
+      </div>
+      <div class="gl-body">
+        <div class="goals rv" role="tablist" aria-label="Design goals">
+          <button class="goal" role="tab" id="g1" aria-selected="true" aria-controls="proof" data-img="img/dashboard.webp" data-box="74.4,76.4,22.8,20.4" data-tag="Persistent call widget"><span class="n">01</span><h3>Stay on the call</h3><p>A persistent call widget follows the agent down the page, so the live conversation is never one screen away from the task at hand.</p></button>
+          <button class="goal" role="tab" id="g2" aria-selected="false" aria-controls="proof" tabindex="-1" data-img="img/new-ticket.webp" data-box="11,25,85.4,25.3" data-tag="Pre-filled ticket details"><span class="n">02</span><h3>Reuse, don&rsquo;t re-type</h3><p>Ticket forms inherit the call&rsquo;s details automatically (agent, phone number, date), cutting duplicate data entry.</p></button>
+          <button class="goal" role="tab" id="g3" aria-selected="false" aria-controls="proof" tabindex="-1" data-img="img/active-call.webp" data-box="10.6,27.6,86.8,40.4" data-tag="History + ticket detail"><span class="n">03</span><h3>One record, full context</h3><p>Ticket history, priority and the customer profile sit side by side, so status changes happen without leaving the page.</p></button>
+        </div>
+        <figure class="proof rv" id="proof" role="tabpanel" aria-labelledby="g1" style="margin:0">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>NTRA · Call Center Portal</span></div><div class="vp"><img id="proofImg" src="img/dashboard.webp" alt="NTRA portal screen with the relevant area highlighted" width="2200" height="1874" loading="lazy"><div class="hl" id="hl"><b id="hlTag">Persistent call widget</b></div></div></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="ws pad" data-sec="05" data-name="Workspace" aria-labelledby="ws-t">
+    <div class="wrap">
+      <div class="ws-head rv">
+        <div><div class="label mono"><b>05</b><i></i>The workspace</div><h2 class="d2" id="ws-t">Follow <em>one</em> call.</h2></div>
+        <div class="steps" role="tablist" aria-label="Workspace screens">
+          <button role="tab" aria-selected="true" data-i="0"><i>01</i>Monitor</button>
+          <button role="tab" aria-selected="false" tabindex="-1" data-i="1"><i>02</i>Log</button>
+          <button role="tab" aria-selected="false" tabindex="-1" data-i="2"><i>03</i>Resolve</button>
+        </div>
+      </div>
+      <div class="ws-body">
+        <div class="ws-shot rv"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>NTRA · Call Center Portal</span></div><div class="vp"><img id="wsImg" src="img/dashboard.webp" alt="" width="2200" height="1874" loading="lazy"></div></div></div>
+        <div class="ws-note rv" role="tabpanel" aria-live="polite">
+          <span class="mono" id="wsK">01 · Monitor</span>
+          <h3 id="wsT">The agent&rsquo;s home base</h3>
+          <p id="wsP">Everything that frames a shift, on one screen.</p>
+          <ul id="wsL"></ul>
+          <div class="ws-nav"><button type="button" id="wsPrev" aria-label="Previous screen"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="wsNext" aria-label="Next screen"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sl pad" data-sec="06" data-name="Status" aria-labelledby="sl-t">
+    <div class="wrap sl-grid">
+      <div class="rv">
+        <div class="label mono"><b>06</b><i></i>Status language</div>
+        <h2 class="d2" id="sl-t">Read the queue at a <em>glance.</em></h2>
+        <p class="lead" style="margin-top:22px">The same few statuses appear on every screen: tickets, records and the detail panel. Each one pairs a colour with a dot and a word, so the meaning never depends on colour alone.</p>
+      </div>
+      <div class="rv">
+        <div class="chips">
+          <div class="chiprow"><span class="st fail">Failure to reach</span><small>Needs another attempt</small></div>
+          <div class="chiprow"><span class="st prog">In Progress</span><small>Being handled</small></div>
+          <div class="chiprow"><span class="st ok">Approve · Answered</span><small>Done</small></div>
+          <div class="chiprow"><span><span class="prio">High</span> <span class="prio low">Low</span></span><small>Priority</small></div>
+        </div>
+        <div class="swatches" aria-label="Interface colours">
+          <div class="sw" style="background:#2d2e5f">Navy<br>Primary</div>
+          <div class="sw" style="background:#3baa7e">Green<br>Live call</div>
+          <div class="sw" style="background:#e2501f">Orange<br>Urgent</div>
+          <div class="sw" style="background:#e09a12">Amber<br>Pending</div>
+          <div class="sw lt" style="background:#f6f6fb">Mist<br>Canvas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close pad" data-sec="07" data-name="Next" aria-labelledby="cl-t">
+    <div class="wrap rv">
+      <div class="label mono" style="justify-content:center;color:var(--on-dark-2)"><b>07</b><i></i>Thanks for reading</div>
+      <h2 class="d2" id="cl-t">Fewer screens, <em>one conversation.</em></h2>
+      <p class="lead">Want to see more? There are three more case studies in the portfolio.</p>
+      <div class="close-actions">
+        <a class="btn pri" href="../ms-group/index.html">Next: MS El Brancy Group →</a>
+        <a class="btn" href="../index.html#work">Back to portfolio</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(()=>{
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* live timer */
+  const t=document.getElementById('liveTimer');let s=150;
+  if(!reduce)setInterval(()=>{s++;const h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),x=String(s%60).padStart(2,'0');t.textContent=`${h}:${m}:${x}`},1000);
+
+  /* reveal */
+  const rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});rv.forEach(e=>io.observe(e))}else rv.forEach(e=>e.classList.add('in'));
+
+  /* HUD section indicator */
+  const hud=document.getElementById('hudSec');
+  const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)hud.innerHTML=`<b>${e.target.dataset.sec}</b><span>${e.target.dataset.name}</span>`}),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('[data-sec]').forEach(s=>io2.observe(s));
+
+  /* before / after */
+  const stage=document.getElementById('stage');
+  document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',()=>{stage.dataset.mode=b.dataset.mode;document.querySelectorAll('.toggle button').forEach(x=>x.setAttribute('aria-pressed',x===b))}));
+  if(!reduce){const io3=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{if(stage.dataset.mode==='before'&&!stage.dataset.touched)document.querySelector('.toggle [data-mode="after"]').click()},2600);io3.disconnect()}}),{threshold:.6});io3.observe(stage)}
+  document.querySelector('.toggle').addEventListener('pointerdown',()=>stage.dataset.touched=1);
+
+  /* tabs helper */
+  const tabs=(list,onSel)=>{const items=[...list];items.forEach((b,i)=>{b.addEventListener('click',()=>sel(i));b.addEventListener('keydown',e=>{const k={ArrowDown:1,ArrowRight:1,ArrowUp:-1,ArrowLeft:-1}[e.key];if(k){e.preventDefault();const n=(i+k+items.length)%items.length;sel(n);items[n].focus()}})});
+    function sel(i){items.forEach((b,j)=>{b.setAttribute('aria-selected',i===j);b.tabIndex=i===j?0:-1});onSel(i,items[i])}return sel};
+
+  /* goals with highlight */
+  const img=document.getElementById('proofImg'),hl=document.getElementById('hl'),tag=document.getElementById('hlTag'),proof=document.getElementById('proof');
+  const setBox=b=>{const [l,t2,w,h]=b.dataset.box.split(',').map(Number);Object.assign(hl.style,{left:l+'%',top:t2+'%',width:w+'%',height:h+'%'});hl.classList.toggle('r',l>50);tag.textContent=b.dataset.tag;proof.setAttribute('aria-labelledby',b.id)};
+  tabs(document.querySelectorAll('.goal'),(i,b)=>{if(img.getAttribute('src')!==b.dataset.img){img.classList.add('swap');hl.style.opacity=0;setTimeout(()=>{img.src=b.dataset.img;img.onload=()=>{img.classList.remove('swap');setBox(b);hl.style.opacity=1}},250)}else setBox(b)});
+  setBox(document.getElementById('g1'));
+
+  /* workspace walkthrough */
+  const W=[
+    {img:'img/dashboard.webp',k:'01 · Monitor',t:'The agent&rsquo;s home base',p:'Everything that frames a shift, on one screen.',l:['Report filters to search calls by date, agent, channel, status or ticket','Latest support tickets with status, contact and priority on each card','Call statistics: total, inbound, outbound and average handle time','Today&rsquo;s schedule, plus call records in a paged table','The live call pinned in the corner, with Add Notes one click away'],alt:'Dashboard with reports, tickets, statistics, schedule, call records and live call widget'},
+    {img:'img/new-ticket.webp',k:'02 · Log',t:'Open a ticket without starting over',p:'Logging the request happens next to the queue it joins.',l:['Four counters at the top: open, waiting reply, active and resolved tickets','A new-ticket form with the call&rsquo;s details already filled in','Estimated time and who it&rsquo;s assigned to, set in the same form','Selecting a ticket opens its full detail beside the list'],alt:'Open New Ticket screen with ticket counters, form, ticket list and ticket detail'},
+    {img:'img/active-call.webp',k:'03 · Resolve',t:'Who&rsquo;s calling, and what happened before',p:'The caller, their history and the controls for the live call, together.',l:['Caller profile with phone, email and ID at the top','Call controls (end, transfer, mute) always in reach','The caller&rsquo;s full ticket history, newest first','Status, ticket status and priority edited inline, then submitted'],alt:'Active call screen with caller profile, call controls, ticket history and ticket editor'}
+  ];
+  const wi=document.getElementById('wsImg');let cur=0;
+  const show=i=>{cur=i;const d=W[i];document.getElementById('wsK').textContent=d.k.replace(/&rsquo;/g,'’');document.getElementById('wsT').innerHTML=d.t;document.getElementById('wsP').innerHTML=d.p;document.getElementById('wsL').innerHTML=d.l.map(x=>`<li>${x}</li>`).join('');
+    wi.classList.add('swap');setTimeout(()=>{wi.src=d.img;wi.alt=d.alt;wi.onload=()=>wi.classList.remove('swap')},200)};
+  const selWs=tabs(document.querySelectorAll('.steps button'),i=>show(i));
+  document.getElementById('wsPrev').onclick=()=>selWs((cur+2)%3);document.getElementById('wsNext').onclick=()=>selWs((cur+1)%3);
+  show(0);wi.classList.remove('swap');
+})();
+</script>
+</body>
+</html>
