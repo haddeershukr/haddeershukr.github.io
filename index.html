@@ -877,7 +877,8 @@
 
     /* topographic background */
     body{background-color:#fff!important;background-image:url("assets/topo.svg")!important;background-size:1600px 1600px!important;background-repeat:repeat!important;background-attachment:scroll!important}
-    .hero-canvas{background:transparent!important}
+    .hero-canvas{background-color:#fff!important;background-image:linear-gradient(to bottom,rgba(255,255,255,0) 78%,#fff 100%),radial-gradient(circle,rgba(54,60,64,.07) 4.5px,transparent 4.9px)!important;background-size:100% 100%,60px 60px!important;background-position:0 0,center top!important;background-repeat:no-repeat,repeat!important}
+    @media(max-width:600px){.hero-canvas{background-size:100% 100%,44px 44px!important}}
     @media(max-width:600px){body{background-size:1100px 1100px!important}}
   </style>
 </head>
